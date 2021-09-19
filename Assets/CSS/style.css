@@ -1,0 +1,113 @@
+:root {
+    --btn-background-color: rgb(81, 70, 238);
+}
+
+/* header menu*/
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+}
+header div {
+    display: inline-flex;
+    flex: 1;
+}
+.high-score-wrapper {
+    justify-content: flex-start;
+    align-items: center;
+}
+.time-wrapper {
+    justify-content: flex-end;
+}
+
+
+
+/* Introduction Slide */
+#intro-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    max-width: 80%;
+    padding: 20px;
+}
+#start-quiz-btn {
+    color: white;
+    background-color: var(--btn-background-color);
+    border-radius: 5px;
+}
+#start-quiz-btn:hover {
+    color: var(--btn-background-color);
+    background-color: white;
+}
+
+
+
+
+/* Questions Box */ 
+#section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+}
+#question-container {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 20px;
+    background-color: white;
+    width: 800px;
+    max-width: 85%;
+    
+}
+#question {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; 
+    background-color: white;   
+}
+#answer-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
+    margin: 10px 0;
+    background-color: white;
+
+}
+#answer {
+    display: flex;
+    align-items: flex-start;
+    
+    width: 100%;
+    max-width: 80%;
+    margin: 20px;
+    
+}
+.btn-class {
+    background-color: var(--btn-background-color);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+}
+.btn.correct{
+    border-bottom: 2px solid var(--btn-background-color);
+}
+.btn.wrong{
+    border-bottom: 2px solid var(--btn-background-color);
+}
+.btn-class:hover {
+    color: var(--btn-background-color);
+    background-color: white; 
+}
+.hidden {
+    display: none;
+}
