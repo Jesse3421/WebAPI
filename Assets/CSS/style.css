@@ -75,8 +75,8 @@ header div {
     background-color: white;   
 }
 #answer-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    display: flex;
+    flex-direction: column;
     gap: 15px;
     margin: 10px 0;
     background-color: white;
@@ -85,7 +85,6 @@ header div {
 #answer {
     display: flex;
     align-items: flex-start;
-    
     width: 100%;
     max-width: 80%;
     margin: 20px;
@@ -110,4 +109,10 @@ header div {
 }
 .hidden {
     display: none;
+}
+.correct {
+    background-color: greenyellow;
+}
+.wrong {
+    background-color: red;
 }

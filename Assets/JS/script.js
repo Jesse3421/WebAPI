@@ -1,127 +1,188 @@
-var startQuizBtn = document.getElementById('start-quiz-btn');
-var introContainerEl = document.getElementById('intro-container');
-var questionContainerEl = document.getElementById('question-container');
+const startButton = document.querySelector("#start-quiz-btn")
+const introContainer = document.querySelector("#intro-container")
+const questionContainer = document.querySelector("#question-container")
+const questionEl = document.querySelector("#question")
+const answerEl = document.querySelector(".btn-class")
+const correctTitle = document.querySelector("#correct")
+const wrongTitle = document.querySelector("#wrong")
+const answerButtons = document.querySelector("#answer-buttons")
+let sec = 60
+var score = 0 
+let questionPool = [] //initialization condition
+let currentQuestionData, currentAnswerData 
 
-var shuffledQuestions, currentQuestionIndex;
 
-var questionEl = document.getElementById('question');
-var answerEl = document.getElementById('answer-buttons');
-var timerEl = document.getElementById;
+var questionArr = [
 
+    {
+        questions: 'Which actor originally played James Rhodes in the original Iron Man film?',
+        answers: [
+            {text: 'Paul Bethany', answer: false},
+            {text: 'Terrance Howard', answer: true},
+            {text: 'Don Cheadle', answer: false},
+            {text: 'Jon Favreau', answer: false}
+    ]},
+    {
+        questions: 'In which movie did we first see the face of Thanos?',
+        answers: [
+            {text: 'Thor', answer: false},
+            {text: 'The Avengers', answer: true},
+            {text: 'The Avengers: Age of Ultron', answer: false},
+            {text: 'The Avenger: Endgame', answer: false}
+        ]},
+       {
+        questions: 'Who played Thor’s love interest in the first two Thor films?',
+        answers: [
+            {text: 'Scarlet Johansson', answer: false},
+            {text: 'Elizabeth Olson', answer: false},
+            {text: 'Brie Larson', answer: false},
+            {text: 'Natalie Portman', answer: true}
+        ]},
+        {
+        questions: 'Natasha Romanoff tells Loki she has what in her ledger?',
+        answers: [
+            {text: 'Phone Numbers', asnswer: false},
+            {text: 'Red', answer: true},
+            {text: 'Plans', answer: false},
+            {text: 'Pictures of friends', answer: false}
+        ]},
+        {
+        questions: 'Bradley Cooper is the voice of which Marvel character?',
+        answers: [
+            {text: 'Groot', answer: false},
+            {text: 'Howard the Duck', answer: false},
+            {text: 'Rocket', answer: true},
+            {text: 'Jarvis', answer: false}
+        ]}
+        
+    
+]
+//Press Start button to begin game
 
-
-startQuizBtn.addEventListener('click', startQuiz);
+startButton.addEventListener("click" , startQuiz)
+answerEl.addEventListener("click", presentNextQuestion)
 
 function startQuiz() {
-    introContainerEl.style.display = "none";    
-    document.getElementById('question-container').style.display = 'flex';
+    introContainer.style.display = "none"
+    questionContainer.style.display = "flex"
+    score = 0
+    currentQuestion = 0
     
-    shuffledQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
+    presentNextQuestion()
+    //TIMER for quiz  
+    //var time = setInterval(myTimer, 1000);
     
-    nextQuestion();
-
-    var sec = 30;
-    var time = setInterval(myTimer, 1000);
-
-    function myTimer() {
-    document.getElementById('timer').innerHTML = "Time: " + sec;
-    sec--;
-       if (sec == -1) {
-           clearInterval(time);
-           alert("Quiz Over");
+    myTimer = () => {
+        document.querySelector('#timer').innerHTML = "Time: " + sec;
+        sec--;
+        if (sec == -1) {
+            clearInterval(time);
+            alert("Quiz Over");
+            //questionContainer.style.display = "none"
+            //insert last slide here closingContainer.style.remove ="hide"
+            //Display Score....
         }
     }
 }
 
-function nextQuestion() {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex]);  
-}
+console.log(questionArr)
 
-function showQuestion(questions) {
-    questionEl.innerText = questions.question;
-    questions.answers.forEach(answer => {
-        var button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn-class');
-        if(answer.correct) {
-            button.dataset.correct = answer.correct;
+function presentNextQuestion(questionPool) {
+    
+    questionPool = questionArr.slice()
+    console.log(questionPool)
+    
+    
+    for (let i = 0; i < questionPool.length; i++) { 
+       currentQuestion = questionPool[i]
+       console.log(currentQuestion)
+       currentAnswer = questionPool[i].answers[i].
+       console.log(currentAnswer)
+        questionIndex = Math.floor(Math.random() * questionPool.length)
+        currentQuestionData = questionPool[questionIndex]
+        
+        questionEl.innerText = currentQuestion[i].questions
+
+
+            if (answerChoice) {
+                questionPool.splice(currentQuestionData) 
+                score = score + 25
+                correctTitle.classList.remove("hidden")
+                setTimeout(clearStatusClass, [2000]) 
+                presentNextQuestion
+                
+            } else {
+                questionPool.splice(currentQuestionData)
+                score = score - 25
+                sec = sec - 10
+                wrongTitle.classList.remove("hidden")
+                setTimeout(clearStatusClass, [2000]) 
+                presentNextQuestion
+            }
         }
-        button.addEventListener('click', selectAnswer);
-        answerEl.appendChild(button);
-    })  
-}
+    }  
+      
+        function clearStatusClass() {
+            correctTitle.classList.add("hidden")
+            wrongTitle.classList.add("hidden")
+            answerEl.classList.add("btn-class")
+            presentNextQuestion()
+                
+        }
+        
+ 
+        
+        /*
+        function hide(evt){
+            evt.target.answerEl.style.display = "none"
+            answerEl.classList
+            questionPool = questionArr.slice()
+            
+            
+            questionPool.splice(randomQuestion)
 
-function resetState() {
-    while (answerEl.firstChild) {
-        answerEl.removeChild
-        (answerEl.firstChild)
+    if(questionPool[0].answers[i].answer) {
+        answerEl.dataset.correct = answers.correct
     }
-}
-function selectAnswer() {
-
-
-}
-function correctAnswer(){
-
-
-}
-function wrongAnswer(){
-
-}
-function allDone () {
-
+    answerEl.addEventListener("click", chooseAnswer)
+    
+  currentQuestion = randomQuestion.questions
 }
 
-var questions = [
-    {
-        question: 'At the end of the first Avengers movie what type of food were the Avengers seen eating which was suggested by Tony Stark himself?', 
-        answers: [
-        {text: 'Cake', correct: false},
-        {text: 'Gyro', correct: false},
-        {text: 'Pizza', correct: false},
-        {text: 'Shawarma', correct: true}
-    ]},
-    {
-        question: 'Which actor originally played James Rhodes in the original Iron Man film?',
-        answers: [
-            {text: 'Paul Bethany', correct: false},
-            {text: 'Terrance Howard', correct: true}, 
-            {text: 'Don Cheadle', correct: false}, 
-            {text: 'Jon Favreau', correct: false}
-    ]},
-    {
-        question: 'In which movie did we first see the face of Thanos?',
-        answers: [
-            {text: 'Thor', correct: false},
-            {text: 'The Avengers', correct: true},
-            {text: 'The Avengers: Age of Ultron', correct: false},
-            {text: 'The Avenger: Endgame', correct: false}
-        ]},
-       { 
-        question: 'Who played Thor’s love interest in the first two Thor films?', 
-        answers: [
-            {text: 'Scarlet Johansson', correct: false},
-            {text: 'Elizabeth Olson', correct: false}, 
-            {text: 'Brie Larson', correct: false}, 
-            {text: 'Natalie Portman', correct: true} 
-        ]},
-        {
-        question: 'Natasha Romanoff tells Loki she has what in her ledger?',
-        answers: [
-            {text: 'Phone Numbers', correct: false},
-            {text: 'Red', correct: true},
-            {text: 'Plans', correct: false},
-            {text: 'Pictures of friends', correct: false} 
-        ]},
-        {
-        question: 'Bradley Cooper is the voice of which Marvel character?',
-        answer: [
-            {text: 'Groot', correct: false},
-            {text: 'Howard the Duck', correct: false},
-            {text: 'Rocket', correct: true}, 
-            {text: 'Jarvis', correct: false} 
-        ]} 
-]
+chooseAnswer(e)
+    var selectedAnswer = e.target
 
+       
+    
+
+    
+    //answerButtons.appendChild("answerEl")
+    
+   
+    if (questionPool > 0)
+    presentNextQuestion()
+    } else {
+        endQuiz ()
+    }
+
+}      
+
+
+function chooseAnswer(e) {
+
+answerEl.addEventListener('click', correct)
+
+}function repeat() {
+    if(questionPool >= 0)
+ presentNextQuestion()
+ } else {
+    endGame()
+ }
+ 
+
+function clearStatusClass(element) {
+    correctAnswer.classList.add('hidden')
+    incorrectAnswer.classList.add('hidden')
+ }
+  
+ */
