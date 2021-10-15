@@ -100,9 +100,13 @@ function presentNextQuestion(questionPool) {
        console.log(currentAnswer)
         questionIndex = Math.floor(Math.random() * questionPool.length)
         currentQuestionData = questionPool[questionIndex]
-        
+        currentAnswerData = currentQuestionData.answers[i].text
         questionEl.innerText = currentQuestion[i].questions
 
+        var btn = document.querySelector(`#btn${i+1}`)
+        //currentAswers = currentQuestion.answer.text
+        btn.innerText = currentAnswerData
+ 
 
             if (answerChoice) {
                 questionPool.splice(currentQuestionData) 
