@@ -77,17 +77,18 @@ function startQuiz() {
     currentQuestion = 0
     question = currentQuestion.question
     randomQuestion = Math.floor(Math.random() * questionArr.length)
-    displayNextQuestion(questionArr)    
+    displayNextQuestion(currentQuestion)    
 }
 
     //Display next random question in index
-function displayNextQuestion(questionArr) {
+function displayNextQuestion(currentQuestion) {
         displayQuestion(randomQuestion[currentQuestion])
+        console.log(currentQuestion)
 }
     
     //Display current question in the button
 function displayQuestion(question) {
-        questionEl.innerText = .question
+        questionEl.innerText = currentQuestion.question
         console.log(currentQuestion.question)
 }
 
@@ -98,10 +99,10 @@ function displayQuestion(question) {
     }*/
 
     function presentNextQuestion(questionArr) {
-        currentQuestion = currentQuestion.title
+        currentQuestion = currentQuestion.question
         console.log(currentQuestion)
         
-            console.log(currentAnswer)
+        
             currentQuestionData = questionArr[questionIndex]
             currentAnswerData = currentQuestionData.answers[i].text
             
