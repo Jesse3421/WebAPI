@@ -8,7 +8,7 @@ const wrongTitle = document.querySelector("#wrong")
 const answerButtons = document.querySelector("#answer-buttons")
 let sec = 60
 var score = 0 
-let currentQuestion, currentAnswerData, randomQuestion 
+let currentQuestion, currentAnswer, randomQuestion 
 
 
 var questionArr = [
@@ -75,28 +75,33 @@ function startQuiz() {
     questionContainer.style.display = "flex"
     score = 0
     currentQuestion = 0
-    question = currentQuestion.question
-    randomQuestion = Math.floor(Math.random() * questionArr.length)
-    displayNextQuestion(currentQuestion)    
+    currentAnswer = 0
+    answerChoices = questionArr[currentQuestion].choices
+    console.log(answerChoices)
+    question = questionArr[currentQuestion].question
+    console.log(question)
+    //randomQuestion = Math.floor(Math.random() * questionArr.length)
+    displayQuestion(question, answerChoices) 
+    console.log(question)   
 }
-
-    //Display next random question in index
-function displayNextQuestion(currentQuestion) {
-        displayQuestion(randomQuestion[currentQuestion])
-        console.log(currentQuestion)
-}
+//Display current question in the button
+function displayQuestion (question, answerChoices) {
+    questionEl.innerText = question
+    console.log(question)
+    var btn = document.querySelector(`#btn${i+1}`)
+    console.log(btn)
+    console.log(answerChoices)
+    btn.innerText = answerChoices
     
-    //Display current question in the button
-function displayQuestion(question) {
-        questionEl.innerText = currentQuestion.question
-        console.log(currentQuestion.question)
 }
 
-  /*  function validateAnswer(currentQuestion) {
+    function validateAnswer(currentQuestion) {
         currentQuestion.choices.forEach(function(choice, index){
-        
+        if(userChoice === questions[currentQuestion].answer){
+
+        }
         })
-    }*/
+    }
 
     function presentNextQuestion(questionArr) {
         currentQuestion = currentQuestion.question
@@ -108,14 +113,11 @@ function displayQuestion(question) {
             
             currentAnswer = questionPool[i].answers[i].
             currentAnswer = currentQuestion.answers[i]
-            var btn = document.querySelector(`#btn${i+1}`)
-            //currentAswers = currentQuestion.answer.text
-            btn.innerText = currentAnswer 
         
         
         
         
-        for (let i = 0; i < questionArr.length; i++) { 
+        /*for (let i = 0; i < questionArr.length; i++) { 
             currentQuestion = questionArr[i]
             console.log(currentQuestion)
             
@@ -124,7 +126,6 @@ function displayQuestion(question) {
             console.log(currentAnswer)
             questionIndex = Math.floor(Math.random() * questionPool.length)
             currentQuestionData = questionPool[questionIndex]
-            currentAnswerData = currentQuestionData.answers[i].text
             questionEl.innerText = currentQuestion[i].questions
             
             var btn = document.querySelector(`#btn${i+1}`)
@@ -146,7 +147,7 @@ function displayQuestion(question) {
                 setTimeout(clearStatusClass, [2000]) 
                 presentNextQuestion
             }
-        }
+        }*/
     }
     
     
