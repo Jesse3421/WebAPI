@@ -103,7 +103,7 @@ header div {
 .btn.wrong{
     border-bottom: 2px solid var(--btn-background-color);
 }
-.btn-class:hover {
+.btn-class:active {
     color: var(--btn-background-color);
     background-color: white; 
 }
@@ -116,3 +116,21 @@ header div {
 .wrong {
     background-color: red;
 }
+#endGame-slide {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 800px;
+    max-width: 80%;
+    padding: 20px;
+    background-color: white;
+}
+#endGame-slide div {
+    padding: 40px;
+    font-size: 20px;
+
+}
+
+
