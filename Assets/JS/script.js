@@ -191,16 +191,18 @@ function showHighScores(initialData) {
     let finalScores = localStorage.getItem('initialData')
     topScoreArr = finalScores ? JSON.parse(finalScores) : []
     console.log(topScoreArr)
-    let playerInitials = topScoreArr[i].initials
+    //let playerInitials = topScoreArr[i].initials
     console.log(topScoreArr)
-    let listScore = topScoreArr[i].playerScore
+    //let listScore = topScoreArr[i].playerScore
     topScoreArr.sort(function (a, b) {
         return a.playerScore - b.playerScore
     })
     topScoreArr.reverse()
     console.log(topScoreArr)
     
-    for(let i = 0; i <= 5 ; i++) {
+    for(let i = 0; i <= 4 ; i++) {
+        let playerInitials = topScoreArr[i].initials
+        let listScore = topScoreArr[i].playerScore
         let message = "Player Initials : " + playerInitials + " Players Score: " + listScore 
         listPlayersScore = document.createElement("li")
         listPlayersScore.innerHTML = message
