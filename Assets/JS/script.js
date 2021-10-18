@@ -9,10 +9,16 @@ const answerButtons = document.querySelector("#answer-buttons")
 const endGamePage = document.querySelector("#endGame-slide")
 const scoreShow = document.querySelector(".scorePlaceholder")
 const timeShow = document.querySelector("#timer")
-
+const initialSumbit = document.querySelector("#initials-btn")
+const initialsText = document.querySelector("#initials")
+const topScoresList = document.querySelector(".top-scores")
+const scoreSlide = document.querySelector("#score-slide")
 let sec = 60
 var score = 0
-let currentQuestion, currentAnswer, answer, timerId
+let scoreData = []
+let topScoreArr = []
+let currentQuestion, currentAnswer, answer, timerId, initialData, playerInitials, listScore
+let message, listPlayersScore, finalScores
 
 
 var questionArr = [
@@ -146,20 +152,59 @@ function clearStatusClass() {
         displayQuestion(question, answerChoices, answer)
     }
 }
-
-function endGame() {
-    clearInterval(timeId)
-    questionContainer.style.display = "none"
-    endGamePage.style.display = "flex"
-    document.querySelector()
-    scoreShow.innerHTML = "Score: " + score
-    storage.setItem(playerScore, score)
-    
-}
-
 function myTimer() {
     sec--;
     timeShow.innerHTML = "Time: " + sec
     
 }
 
+function endGame(score) {
+    clearInterval(timeId)
+    questionContainer.style.display = "none"
+    endGamePage.style.display = "flex"
+    initialSumbit.addEventListener("click", saveInitials) 
+}
+
+function saveInitials (ev) {
+    ev.preventDefault() 
+    let initialData = {
+        initials: initialsText.value,
+        playerScore: score
+    }
+    if(localStorage.getItem('initialData') === null) {
+        localStorage.setItem('initialData', [] )
+    }
+    let scoreData = []
+    let oldScore = localStorage.getItem('initialData')
+    scoreData = oldScore ? JSON.parse(oldScore) : [] 
+    scoreData.push(initialData)
+    localStorage.setItem('initialData', JSON.stringify(scoreData))
+    console.log(scoreData)
+    showHighScores(initialData)
+}
+
+
+function showHighScores(initialData) {
+    endGamePage.style.display = "none"
+    scoreSlide.style.display = "flex"
+    topScoreArr = []
+    let finalScores = localStorage.getItem('initialData')
+    topScoreArr = finalScores ? JSON.parse(finalScores) : []
+    console.log(topScoreArr)
+    let playerInitials = topScoreArr[i].initials
+    console.log(topScoreArr)
+    let listScore = topScoreArr[i].playerScore
+    topScoreArr.sort(function (a, b) {
+        return a.playerScore - b.playerScore
+    })
+    topScoreArr.reverse()
+    console.log(topScoreArr)
+    
+    for(let i = 0; i <= 5 ; i++) {
+        let message = "Player Initials : " + playerInitials + " Players Score: " + listScore 
+        listPlayersScore = document.createElement("li")
+        listPlayersScore.innerHTML = message
+        topScoresList.appendChild(listPlayersScore)
+        console.log(listPlayersScore)
+    }
+} 

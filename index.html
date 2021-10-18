@@ -45,20 +45,31 @@
             <div id="wrong" class="hidden">Wrong!</div>
         </div>    
     </div>
-
+    
+    <form> 
     <div class="hidden" id="endGame-slide">
         <div><h1> Quiz Over!</h1></div> 
-
+        
         <div><h2> Your score :</h2>
-             <h3 class="scorePlaceholder"></h3>   
+            <h3 class="scorePlaceholder"></h3>   
         </div>
+        <div>
+            <label for="initials">Enter Initials Here</label>
+            <input type="text" id="initials"> <br><br>
+            <input type="submit" value="submit" id="initials-btn" required maxlength="2">
+        </div>    
+    </div>
+    </form>
+    
+    <div class="hidden" id="score-slide">
 
         <div><h1> Top Scores: </h1></div>
-        <ul>
+        <ul class="top-scores">
             
         </ul>
 
     </div>
+    
     
 
     </section>

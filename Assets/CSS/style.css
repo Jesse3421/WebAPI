@@ -130,7 +130,18 @@ header div {
 #endGame-slide div {
     padding: 40px;
     font-size: 20px;
+    justify-content: center;
 
 }
-
+#score-slide {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 800px;
+    max-width: 80%;
+    padding: 20px;
+    background-color: white;
+}
 
